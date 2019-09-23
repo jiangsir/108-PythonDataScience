@@ -40,9 +40,21 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    textin = event.message.text
+
+    if '好嗎' in textin:
+        textout = '很好'
+    elif '天氣' in textin:
+        textout = '今天天氣很好'
+    else:
+        textout = '我不懂你說什麼，請再說一次'
+    
+    #textout = textin
+
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='收到: '+event.message.text))
+        TextSendMessage(text=textout))
 
 
 if __name__ == "__main__":
